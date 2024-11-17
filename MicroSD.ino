@@ -1,6 +1,6 @@
 #include "MicroSD.h"
 
-MicroSD MSD(5);
+MicroSD MSD;
 
 void setup() {
   Serial.begin(115200);
@@ -8,5 +8,7 @@ void setup() {
 }
 
 void loop() {
-  
+  MSD.readFile("/example.txt");
+  Serial.println("");
+  delay(1000);
 }

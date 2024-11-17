@@ -1,5 +1,5 @@
 #ifndef MICROSD_H
-#define MICROSD
+#define MICROSD_H
 
 #include <SD.h>
 #include <SPI.h>
@@ -9,11 +9,12 @@ class MicroSD {
     int pin;
 
   public:
-    MicroSD(int pinMicro) {
+    MicroSD(int pinMicro = 5) {
       pin = pinMicro;
     }
 
     void init();
+    void readFile(String fileName);
 };
 
 #endif
