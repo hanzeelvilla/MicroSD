@@ -15,6 +15,7 @@ class MicroSD {
 
     void init();
     void readFile(String fileName);
+    void saveText(String fileName, String content);
 };
 
 #endif

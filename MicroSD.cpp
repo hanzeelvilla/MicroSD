@@ -20,6 +20,32 @@ void MicroSD::readFile(String fileName) {
 
     microSD_file.close();
   }
-  else
-    Serial.println("Error opening the file");
+  else {
+    Serial.print("Error opening the file: ");
+    Serial.println(fileName);
+  }
+}
+
+void MicroSD::saveText(String fileName, String content) {
+  File microSD_file = SD.open(fileName, FILE_WRITE);
+
+  if (SD.exists(fileName)) {
+    Serial.print(fileName);
+    Serial.println (" exists");
+  }
+  else {
+    Serial.print(fileName);
+    Serial.println(" doesn't exists, CREATING");
+  }
+
+  if (microSD_file) {
+    Serial.print("Writing in: ");
+    Serial.println(fileName);
+    microSD_file.println(content);
+    microSD_file.close();
+  }
+  else {
+    Serial.print("Error opening the file: ");
+    Serial.println(fileName);
+  }
 }
