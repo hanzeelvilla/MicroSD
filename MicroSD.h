@@ -3,6 +3,7 @@
 
 #include <SD.h>
 #include <SPI.h>
+#include <ArduinoJson.h>
 
 class MicroSD {
   private:
@@ -16,6 +17,7 @@ class MicroSD {
     void init();
     void readFile(String fileName);
     void saveText(String fileName, String content);
+    void saveJson(String fileName, const JsonDocument& doc);
 };
 
 #endif

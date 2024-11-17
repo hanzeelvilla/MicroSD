@@ -21,7 +21,7 @@ void MicroSD::readFile(String fileName) {
     microSD_file.close();
   }
   else {
-    Serial.print("Error opening the file: ");
+    Serial.print("Error opening file: ");
     Serial.println(fileName);
   }
 }
@@ -41,11 +41,37 @@ void MicroSD::saveText(String fileName, String content) {
   if (microSD_file) {
     Serial.print("Writing in: ");
     Serial.println(fileName);
+
     microSD_file.println(content);
     microSD_file.close();
+
+    Serial.println("Text saved");
   }
   else {
-    Serial.print("Error opening the file: ");
+    Serial.print("Error opening file: ");
     Serial.println(fileName);
   }
+}
+
+void MicroSD::saveJson(String fileName, const JsonDocument& doc) {
+  File microSD_file = SD.open(fileName, FILE_WRITE);
+
+  if(microSD_file) {
+    Serial.print("Writing in: ");
+    Serial.println(fileName);
+
+    if (serializeJson(doc, microSD_file) == 0) {
+      Serial.print("Error writing in: ");
+      Serial.println(fileName);
+      microSD_file.close();
+      Serial.println("JSON saved");
+    }
+
+    microSD_file.close();
+
+  }
+  else {
+    Serial.print("Error opening file: ");
+    Serial.println(fileName);
+  } 
 }
